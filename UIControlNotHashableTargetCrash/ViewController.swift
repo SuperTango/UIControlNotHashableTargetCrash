@@ -10,11 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var printSomethingButton: UIButton!
+    private let handler = NonHashableButtonHandler()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.printSomethingButton.addTarget(handler, action: #selector(handler.buttonTapped(_:)), for: UIControl.Event.touchUpInside)
     }
 
-
+    @IBAction func crashMeTapped(_ sender: Any) {
+        let targets = self.printSomethingButton.allTargets
+    }
 }
 
